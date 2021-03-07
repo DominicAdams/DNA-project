@@ -25,21 +25,18 @@ const pAequorFactory = (specimenNum, dna) =>{
       this.DNA[randIndex] = newBase
       return this.DNA
     },
-//Compares DNA strands **This needs fixing**
-  compareDNA(pAequorObj){
-      let matches=0;
-      let specNum1 = [this.number];
-      let DNA1 = this.DNA;
-      let DNA2 = [pAequorObj.DNA]
-      for(let i=0;i<DNA1.length;i++){
-      
-        if(DNA1[i]===DNA2[i]){
-          matches+=1;    
-        }       
-      }
-   return matches
-      //let percentage=(matches/15 * 100)
-      //console.log(`${this.specNum} and specimen#${pAequorObj.specimenNum} have ${percentage}% DNA in common`);    
+//Compares DNA strands
+  compareDNA(otherOrg) {
+    const similarities = this.DNA.reduce((acc, curr, idx, arr) => {
+  if (arr[idx] === otherOrg.DNA[idx]) {
+   return acc + 1;
+  } else {
+  return acc;
+        }
+      }, 0);
+    const percentOfDNAEqual= (common/this.dna.length)*100;
+  const percentTo2Deci = percentOfDNAEqual.toFixed(2);
+  console.log(`${this.specimenNum} and ${PAequor.specimenNum} have ${percentageTo2Deci}% DNA in common.`);
   },
       //If a certain percantage of 'A' AND 'G' is present (60% and up), it will likely survive
 willLikelySurvive(){
